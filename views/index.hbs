@@ -1,0 +1,28 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<div>
+    <turbo-frame id="message" data-turbo-track="reload">
+        <h1>My message title</h1>
+        <p>My message content</p>
+        <a href="/message" data-turbo-method="post">Edit this message</a>
+        <a href="/message/1" data-turbo-method="post">Post this message</a>
+    </turbo-frame>
+</div>
+<a data-turbo-method="delete" href="/articles" data-turbo-confirm="Do you want to leave this page?">Back to articles</a>
+<div>
+    <turbo-frame id="set_aside_tray" src="/edge" style="height: 25.531px;">
+        <img src="/images/spinner.gif">
+    </turbo-frame>
+</div>
+<div>
+    <turbo-frame id="set_aside_tray" src="/edge" style="height: 25.531px;">
+         <img src="/images/spinner.gif">
+    </turbo-frame>
+</div>
+<script>
+    addEventListener("turbo:before-frame-render", (event) => {
+        event.preventDefault()
+        console.log('trigger', event);
+        event.detail.resume()
+    })
+</script>
