@@ -3,11 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  // res.render('index', { title: 'Express' });
-  const {html, ttRenderMs} = await ssr(`${req.protocol}://${req.get('host')}/`);
-  // Add Server-Timing! See https://w3c.github.io/server-timing/.
-  res.set('Server-Timing', `Prerender;dur=${ttRenderMs};desc="Headless render time (ms)"`);
-  return res.status(200).send(html); // Serve prerendered page as response.
+  res.render('index', { title: 'Express' });
 });
 
 router.get('/message', async function(req, res, next) {
